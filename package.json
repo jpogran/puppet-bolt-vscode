@@ -1,16 +1,16 @@
 {
   "name": "puppet-bolt-vscode",
-  "displayName": "puppet-bolt-vscode",
+  "displayName": "Puppet Bolt",
   "description": "Puppet Bolt VSCode Extension",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.30.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:extension.helloWorld"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
