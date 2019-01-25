@@ -38,6 +38,12 @@
       {
         "path": "./snippets/bolt.code-snippets"
       }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "tasks/*.json",
+        "url": "https://forgeapi.puppet.com/schemas/task.json"
+      }
     ]
   },
   "scripts": {
