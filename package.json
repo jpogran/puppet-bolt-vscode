@@ -16,10 +16,24 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
+        "command": "puppet-bolt.NewTask",
+        "title": "Bolt: New Task"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [{
+        "command": "puppet-bolt.NewTask",
+        "group": "z_commands"
+      }],
+      "editor/context": [{
+        "command": "puppet-bolt.NewTask",
+        "group": "z_commands"
+      }],
+      "explorer/context": [{
+        "command": "puppet-bolt.NewTask",
+        "group": "z_commands"
+      }]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
