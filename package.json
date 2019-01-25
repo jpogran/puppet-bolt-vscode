@@ -33,7 +33,12 @@
         "command": "puppet-bolt.NewTask",
         "group": "z_commands"
       }]
-    }
+    },
+    "snippets": [
+      {
+        "path": "./snippets/bolt.code-snippets"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

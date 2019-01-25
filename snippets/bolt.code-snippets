@@ -1,0 +1,64 @@
+{
+  "Example-PowerShell-JSON":{
+    "prefix": "bolt-pwsh-json",
+    "body":[
+"{",
+"\"description\": \"Manage the state of Windows services (without a puppet agent)\",",
+"\"private\": true,",
+"\"input_method\": \"powershell\",",
+"\"parameters\": {",
+"\"action\": {",
+"\"description\": \"The operation (start, stop, restart, status) to perform on the service\",",
+"\"type\": \"Enum[start, stop, restart, status]\"",
+"},",
+"\"name\": {",
+"\"description\": \"The short name of the Windows service to operate on.\",",
+"\"type\": \"String[1]\"",
+"}",
+"}",
+"}"
+    ]
+  },
+  "Example-PowerShell":{
+    "prefix": "bolt-pwsh",
+    "body":[
+      "# NOTE: init.json cannot yet be shared, so must have windows.json / windows.ps1",
+      "[CmdletBinding()]",
+      "param(",
+      "\t[Parameter(Mandatory = \\$true)]",
+      "\t[string]\\$${1:Parameter},",
+      "\t[Parameter(Mandatory = \\$true)]",
+      "\t[ValidateSet('choice1', 'choice2', 'choice3')]",
+      "\t[string]\\$${2:Parameter}",
+      ")",
+      "",
+      "try",
+      "{",
+      "\t\\$data = Get-Something -Name \\$${1:Parameter}",
+      "\t\\$result = Invoke-Something -Thing \\$data.Thing -Action \\$${2:Parameter}",
+      "",
+      "\t# TODO: could use ConvertTo-Json, but that requires PS3",
+      "\t# if embedding in literal, should make sure value does not need escaping",
+      "\tWrite-Host @\"",
+      "\t{",
+        "\t\t\"name\": \"\\$(\\$result)\",",
+      "\t}",
+      "\"@",
+      "}",
+      "catch {",
+        "\tWrite-Host @\"",
+        "\t{",
+          "\t\t\"status\"  : \"failure\",",
+          "\t\t\"name\"    : \"\\$Name\",",
+          "\t\t\"_error\"  : {",
+            "\t\t\t\"msg\" : \"Unable to perform '\\$${2:Parameter}' on '\\$Name': \\$(\\$_.Exception.Message)\",",
+            "\t\t\t\"kind\": \"powershell_error\",",
+            "\t\t\t\"details\" : {}",
+          "\t\t}",
+        "\t}",
+      "\"@",
+      "}"
+
+    ]
+  }
+}
